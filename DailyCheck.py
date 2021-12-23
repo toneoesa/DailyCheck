@@ -1,3 +1,4 @@
+import random
 from random import randint
 import argparse
 from time import asctime, sleep
@@ -17,6 +18,7 @@ if __name__ == '__main__':
     parser.add_argument('-S', '--sleep', default=600, type=int, action='store', help='Sleep seconds before work')
     parser.add_argument('-t', '--time', default=600, type=int, action='store',
                         help='Choose time points randomly in during this time')
+    parser.add_argument('--shuffle', default=False, action='store_true', help='Shuffle the order of users')
     args = parser.parse_args().__dict__
 
     access_token = ''
@@ -50,6 +52,9 @@ if __name__ == '__main__':
     log_group.set_ding(access_token, secret)
     log_group.write('From Daily Check:', 'ding')
     log_group.write(f'{asctime()}')
+
+    if args['shuffle']:
+        random.shuffle(ids)
 
     if not args['now']:
         sleep(args['sleep'])
