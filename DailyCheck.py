@@ -26,7 +26,7 @@ if __name__ == '__main__':
         try:
             with open(args['file'], 'r', encoding='utf-8') as id_file:
                 for line in id_file:
-                    if len(line) == 0 or line[0] == '#':
+                    if len(line.replace('\n', '')) == 0 or line[0] == '#':
                         continue
                     if line[0] == '@':
                         access_token, secret = line[1:].split()[:2]
