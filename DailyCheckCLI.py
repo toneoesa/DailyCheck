@@ -17,6 +17,7 @@ class IDFile:
         if os.path.isfile(self.filename):
             with open(self.filename, 'r', encoding='utf-8') as id_file:
                 for line in id_file:
+                    line = line.replace('\n', '')
                     if len(line) == 0:
                         continue
                     if line[0] == '@':
